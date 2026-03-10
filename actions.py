@@ -75,32 +75,35 @@ def fishFromHand(rank, playerHand, userTurn):
     for card in cardsTaken:
         playerHand.remove(card)
     if userTurn:
-        player = "The computer"
+        player = "You"
+        opponent = "The computer"
         verb = "says"
     else:
-        player = "You"
+        player = "The computer"
+        opponent = "You"
         verb = "say"
     if cardsTaken:
         print(f"\n{player} took the following card(s):")
         for card in cardsTaken:
             print(f"{card["rank"]} of {card["suit"]}")
     else:
-        print("There are no matching cards.")
-        print(f"{player} {verb}: Go fish!")
+        print(f"\n{opponent} {verb}: Go fish!")
     return cardsTaken
 
 
-def goFish(rank, pond):
+def goFish(pond, userTurn):
     """
-    Will remove and return single random card from the pond.
-    Will print a message for the user to let them know the results.
-    :param rank: rank to search for
+    Returns a single random card from the pond.
+    Prints a message for the user to let them know the results.
     :param pond: list of cards to draw from
+    :param userTurn: bool representing whether it is the user's turn
     :return: dictionary representing a single card
     """
-    print("Fishing from pond")
-    card = {'number': 'ace', 'suit': 'hearts'}
-    print(f"You got this card: {card}")
+    card = random.choice(pond)
+    if userTurn:
+        print(f"\nYou took this card from the pond: \n{card["rank"]} of {card["suit"]}")
+    else:
+        print("\nThe computer took a card from the pond.")
     return card
 
 

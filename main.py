@@ -60,7 +60,8 @@ def main():
             if cardsTaken:
                 playerHand += cardsTaken
             else:
-                card = goFish(rank, pond)
+                card = goFish(pond, userTurn)
+                pond.remove(card)
                 playerHand.append(card)
             #Search for sets of 4 matching cards and update the score
             playerScore += checkForBooks(userTurn, playerHand)
