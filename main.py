@@ -1,3 +1,14 @@
+# ------------------------------------------------------------------------
+#
+#  Program: Go Fish
+#
+#  Description: This program allows you to play a two-person game of Go
+#  Fish against the computer.
+#
+#  Author: Victoria Coleman
+#  Created: March 10, 2026
+#
+# ------------------------------------------------------------------------
 
 from actions import *
 from deck import DECK, dealHand
@@ -5,7 +16,6 @@ from instructions import gameInstructions
 
 def main():
     #Print game instructions and ask user if they want to play.
-    #playing will be True if user wants to play
     playing = printInstructions(gameInstructions)
 
     #User will always be the first player
@@ -45,7 +55,7 @@ def main():
             cardsTaken = fishFromHand(rank, activeHand, userTurn)
             #If any cards are taken, add to player's hand. Else, go fish
             if cardsTaken:
-                activeHand.append(cardsTaken)
+                activeHand += cardsTaken
             else:
                 card = goFish(rank, pond)
                 activeHand.append(card)

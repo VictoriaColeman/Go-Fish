@@ -1,6 +1,11 @@
 import random
 
 def printInstructions(instructions):
+    """
+    Print game instructions, then ask user if they want to play. Validate user response.
+    :param instructions: string containing Go Fish game instructions
+    :return: bool that is True if the user wants to play, False to exit
+    """
     print(instructions)
     response = input("\nAre you ready to play Go Fish? (y/n) ").lower()
     while response not in ["y", "n"]:
@@ -19,18 +24,17 @@ def startOfTurn(userTurn, userScore, compScore):
     :param compScore: Integer representing computer's current score
     :return: None
     """
-
     if userTurn:
         print("\nIt's your turn!")
     else:
-        print("It's my turn!")
+        print("\nIt's my turn!")
     print(f"Your current score: {userScore}")
     print(f"Computer's current score: {compScore}")
 
 
 def showHand(userHand):
     """
-    Tells the user what cards they have remaining in their hand
+    Tells the user what cards they currently have in their hand.
     :param userHand: list of cards representing the user's hand
     :return: None
     """
@@ -40,13 +44,19 @@ def showHand(userHand):
 
 def validRank(userHand):
     """
-    Get input from the user using the string passed to the function.
-    Evaluate if this is a rank in the user's hand.
+    Ask the user what rank they want to fish for and validate their response.
+    Response must be a valid rank that the user has in their hand.
     :param userHand: user's hand
     :return: string representing valid rank the user has chosen.
     """
-    rank = input("\nChoose a rank to fish for (ace, jack, king, queen, 2 to 10): ")
-    return "ace"
+    ranksInHand = []
+    for card in userHand:
+        ranksInHand.append(card["rank"])
+    rank = input("\nChoose a rank to fish for (ace, jack, king, queen, 2 to 10): ").lower()
+    while rank not in ranksInHand:
+        rank = input("Invalid response. Please choose a rank that you have in your hand: ").lower()
+    print(f"\nYou say: Give me your {rank}'s.")
+    return rank
 
 def fishFromHand(rank, playerHand, userTurn):
     """
@@ -54,7 +64,7 @@ def fishFromHand(rank, playerHand, userTurn):
     they will be removed from the hand and returned as a list. If there are no matching cards, function will
     return an empty list. Will print a message about whether any cards were taken from the hand or whether to "Go fish".
     :param rank: String representing the rank of card to fish for.
-    :param playerHand: The hand of cards to fish through.
+    :param playerHand: A list representing the hand of cards to fish through.
     :param userTurn: Bool representing whether it is the user's turn.
     :return: A list of matching cards. Will be an empty list if no matching cards found.
     """
@@ -68,7 +78,7 @@ def goFish(rank, pond):
     Will print a message for the user to let them know the results.
     :param rank: rank to search for
     :param pond: list of cards to draw from
-    :return: card
+    :return: dictionary representing a single card
     """
     print("Fishing from pond")
     card = [{'number': 'ace', 'suit': 'hearts'}]
