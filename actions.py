@@ -1,5 +1,16 @@
 import random
 
+def printInstructions(instructions):
+    print(instructions)
+    response = input("\nAre you ready to play Go Fish? (y/n) ").lower()
+    while response not in ["y", "n"]:
+        response = input("Invalid response. Please type 'y' to play or 'n' to exit: ").lower()
+    if response == "y":
+        return True
+    else:
+        return False
+
+
 def startOfTurn(userTurn, userScore, compScore):
     """
     At the start of turn, prints whose turn it is and the current score.
@@ -14,7 +25,7 @@ def startOfTurn(userTurn, userScore, compScore):
     else:
         print("It's my turn!")
     print(f"Your current score: {userScore}")
-    print(f"My current score: {compScore}")
+    print(f"Computer's current score: {compScore}")
 
 
 def showHand(userHand):

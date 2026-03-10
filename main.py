@@ -4,11 +4,9 @@ from deck import DECK, dealHand
 from instructions import gameInstructions
 
 def main():
-    #Game instructions only print at the start of game, not for a new round.
-    print(gameInstructions)
-
-    #This is True if user wants to play a round of Go Fish
-    playing = True
+    #Print game instructions and ask user if they want to play.
+    #playing will be True if user wants to play
+    playing = printInstructions(gameInstructions)
 
     #User will always be the first player
     userTurn = True
