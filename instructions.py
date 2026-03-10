@@ -1,0 +1,2 @@
+
+gameInstructions = "Game instructions"

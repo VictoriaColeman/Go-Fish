@@ -1,0 +1,77 @@
+
+from actions import *
+from deck import DECK, dealHand
+from instructions import gameInstructions
+
+def main():
+    #Game instructions only print at the start of game, not for a new round.
+    print(gameInstructions)
+
+    #This is True if user wants to play a round of Go Fish
+    playing = True
+
+    #User will always be the first player
+    userTurn = True
+
+    while playing:
+
+        #This creates the pond of cards that can be drawn from. This is the deck that can be altered as the game is played.
+        pond = list(DECK)
+
+        #Deal a starting hand to the user and then to the computer.
+        userHand = dealHand(7, pond)
+        compHand = dealHand(7, pond)
+
+        #Set scores to zero
+        userScore = 0
+        compScore = 0
+
+        #User and computer will continue taking turns until endgame conditions are met.
+        gameOver = False
+        while not gameOver:
+            #Print out whose turn it is and current scores.
+            startOfTurn(userTurn, userScore, compScore)
+
+            #Check whose turn it is and determine which rank to fish for
+            if userTurn:
+                activeHand = userHand
+                activeScore = userScore
+                showHand(userHand)
+                rank = validRank(userHand)
+            else:
+                activeHand = compHand
+                activeScore = compScore
+                rank = compChoice(compHand)
+
+            #Take any matching cards from the other player's hand
+            cardsTaken = fishFromHand(rank, activeHand, userTurn)
+            #If any cards are taken, add to player's hand. Else, go fish
+            if cardsTaken:
+                activeHand.append(cardsTaken)
+            else:
+                card = goFish(rank, pond)
+                activeHand.append(card)
+            #Search for sets of 4 matching cards and update the score
+            activeScore += checkForBooks(userTurn, activeHand)
+            #Check whether any endgame conditions have been met
+            gameOver = checkForEndgame(userScore, compScore, userHand, compHand, pond)
+            #Switch active player - will flip the boolean value of the variable
+            userTurn = not userTurn
+
+        #If endgame conditions have been met, print score and who won
+        displayGameResults(userScore, compScore)
+
+        #Check if the user wants to play another round.
+        if continuePlaying():
+            print("Great! Let's start another round of Go Fish!")
+        else:
+            playing = False
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
