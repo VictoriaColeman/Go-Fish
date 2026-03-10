@@ -42,25 +42,28 @@ def main():
 
             #Check whose turn it is and determine which rank to fish for
             if userTurn:
-                activeHand = userHand
-                activeScore = userScore
+                playerHand = userHand
+                opponentHand = compHand
+                playerScore = userScore
                 showHand(userHand)
+                print(compHand) #HERE FOR TESTING ONLY
                 rank = validRank(userHand)
             else:
-                activeHand = compHand
-                activeScore = compScore
+                playerHand = compHand
+                opponentHand = userHand
+                playerScore = compScore
                 rank = compChoice(compHand)
 
             #Take any matching cards from the other player's hand
-            cardsTaken = fishFromHand(rank, activeHand, userTurn)
+            cardsTaken = fishFromHand(rank, opponentHand, userTurn)
             #If any cards are taken, add to player's hand. Else, go fish
             if cardsTaken:
-                activeHand += cardsTaken
+                playerHand += cardsTaken
             else:
                 card = goFish(rank, pond)
-                activeHand.append(card)
+                playerHand.append(card)
             #Search for sets of 4 matching cards and update the score
-            activeScore += checkForBooks(userTurn, activeHand)
+            playerScore += checkForBooks(userTurn, playerHand)
             #Check whether any endgame conditions have been met
             gameOver = checkForEndgame(userScore, compScore, userHand, compHand, pond)
             #Switch active player - will flip the boolean value of the variable

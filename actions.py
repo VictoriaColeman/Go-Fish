@@ -68,9 +68,27 @@ def fishFromHand(rank, playerHand, userTurn):
     :param userTurn: Bool representing whether it is the user's turn.
     :return: A list of matching cards. Will be an empty list if no matching cards found.
     """
-    print("Fishing from hand")
-    print("No cards are found")
-    return []
+    cardsTaken = []
+    for card in playerHand:
+        if card["rank"] == rank:
+            cardsTaken.append(card)
+    for card in cardsTaken:
+        playerHand.remove(card)
+    if userTurn:
+        player = "The computer"
+        verb = "says"
+    else:
+        player = "You"
+        verb = "say"
+    if cardsTaken:
+        print(f"\n{player} took the following card(s):")
+        for card in cardsTaken:
+            print(f"{card["rank"]} of {card["suit"]}")
+    else:
+        print("There are no matching cards.")
+        print(f"{player} {verb}: Go fish!")
+    return cardsTaken
+
 
 def goFish(rank, pond):
     """
@@ -81,7 +99,7 @@ def goFish(rank, pond):
     :return: dictionary representing a single card
     """
     print("Fishing from pond")
-    card = [{'number': 'ace', 'suit': 'hearts'}]
+    card = {'number': 'ace', 'suit': 'hearts'}
     print(f"You got this card: {card}")
     return card
 
