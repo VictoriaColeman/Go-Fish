@@ -7,7 +7,7 @@ def buildDeck():
     deck = ()
     for suit in suits:
         for rank in ranks:
-            deck += ({"number": rank, "suit": suit},)
+            deck += ({"rank": rank, "suit": suit},)
     return deck
 
 #This is a tuple representing a standard 52-card deck. It is a tuple so that it is never altered.

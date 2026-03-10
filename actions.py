@@ -1,15 +1,5 @@
 import random
 
-def validRank(userHand):
-    """
-    Get input from the user using the string passed to the function.
-    Evaluate if this is a rank in the user's hand.
-    :param userHand: user's hand
-    :return: string representing valid rank the user has chosen.
-    """
-    rank = input("Choose a rank to fish for (ace, jack, king, queen, 2 to 10): ")
-    return "ace"
-
 def startOfTurn(userTurn, userScore, compScore):
     """
     At the start of turn, prints whose turn it is and the current score.
@@ -18,7 +8,13 @@ def startOfTurn(userTurn, userScore, compScore):
     :param compScore: Integer representing computer's current score
     :return: None
     """
-    print("Start of turn message")
+
+    if userTurn:
+        print("\nIt's your turn!")
+    else:
+        print("It's my turn!")
+    print(f"Your current score: {userScore}")
+    print(f"My current score: {compScore}")
 
 
 def showHand(userHand):
@@ -27,7 +23,19 @@ def showHand(userHand):
     :param userHand: list of cards representing the user's hand
     :return: None
     """
-    print(f"User's hand: {userHand}")
+    print("\nYou have the following cards in your hand:")
+    for card in userHand:
+        print(f"{card["rank"]} of {card["suit"]}")
+
+def validRank(userHand):
+    """
+    Get input from the user using the string passed to the function.
+    Evaluate if this is a rank in the user's hand.
+    :param userHand: user's hand
+    :return: string representing valid rank the user has chosen.
+    """
+    rank = input("\nChoose a rank to fish for (ace, jack, king, queen, 2 to 10): ")
+    return "ace"
 
 def fishFromHand(rank, playerHand, userTurn):
     """
