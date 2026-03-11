@@ -10,12 +10,6 @@ Run the program.
 ```
    python main.py
 ```
-### In Google Colab
-
-Paste the code in main.py into a code cell.  After the previous code cell finishes, run this code cell.
-```
-   python main.py
-```
 
 ---
 
