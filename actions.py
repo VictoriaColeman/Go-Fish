@@ -27,7 +27,7 @@ def startOfTurn(userTurn, userScore, compScore):
     if userTurn:
         print("\nIt's your turn!")
     else:
-        print("\nIt's my turn!")
+        print("\nIt's the computer's turn!")
     print(f"Your current score: {userScore}")
     print(f"Computer's current score: {compScore}")
 
@@ -52,7 +52,7 @@ def validRank(userHand):
     ranksInHand = []
     for card in userHand:
         ranksInHand.append(card["rank"])
-    rank = input("\nChoose a rank to fish for (ace, jack, king, queen, 2 to 10): ").lower()
+    rank = input("\nChoose a rank to ask for (ace, jack, king, queen, 2 to 10): ").lower()
     while rank not in ranksInHand:
         rank = input("Invalid response. Please choose a rank that you have in your hand: ").lower()
     print(f"\nYou say: Give me your {rank}'s.")
@@ -113,9 +113,12 @@ def compChoice(compHand):
     :param compHand: computer's hand of cards
     :return: string representing the rank to fish for.
     """
-    print("Computer is choosing what to fish for")
-    print("The computer chooses 'jack'.")
-    return "jack"
+    ranksInHand = []
+    for card in compHand:
+        ranksInHand.append(card["rank"])
+    choice = random.choice(ranksInHand)
+    print(f"\nThe computer says: Give me your {choice}'s.")
+    return choice
 
 def checkForBooks(userTurn, cardList):
     """
