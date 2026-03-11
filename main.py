@@ -45,7 +45,6 @@ def main():
                 playerHand = userHand
                 opponentHand = compHand
                 showHand(userHand)
-                print(compHand) #HERE FOR TESTING ONLY
                 rank = validRank(userHand)
             else:
                 playerHand = compHand

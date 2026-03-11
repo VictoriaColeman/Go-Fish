@@ -17,12 +17,12 @@ def dealHand(numCards, cardList):
 
 def printInstructions(instructions):
     """
-    Prints game instructions, then ask user if they want to play. Validates the user's response.
+    Prints game instructions, then asks user if they want to play. Validates the user's response.
     :param instructions: string containing Go Fish game instructions
     :return: bool that is True if the user wants to play, False to exit
     """
     print(instructions)
-    response = input("\nAre you ready to play Go Fish? (y/n) ").lower()
+    response = input("Are you ready to play Go Fish? (y/n) ").lower()
     while response not in ["y", "n"]:
         response = input("Invalid response. Please type 'y' to play or 'n' to exit: ").lower()
     return response == "y"
@@ -36,12 +36,13 @@ def startOfTurn(userTurn, userScore, compScore):
     :param compScore: integer representing computer's current score
     :return: None
     """
+    print('\n----------------------------------------------------------------------------------------')
     if userTurn:
         print("\nIt's your turn!")
     else:
-        print("\nIt's the computer's turn!")
-    print(f"Your current score: {userScore}")
-    print(f"Computer's current score: {compScore}")
+        print("\nIt's your opponent's turn!")
+    print(f"Your score: {userScore}")
+    print(f"Opponent's score: {compScore}")
 
 
 def showHand(userHand):
@@ -88,10 +89,10 @@ def fishFromHand(rank, playerHand, userTurn):
         playerHand.remove(card)
     if userTurn:
         player = "You"
-        opponent = "The computer"
+        opponent = "Your opponent"
         verb = "says"
     else:
-        player = "The computer"
+        player = "Your opponent"
         opponent = "You"
         verb = "say"
     if cardsTaken:
@@ -114,7 +115,7 @@ def goFish(pond, userTurn):
     if userTurn:
         print(f"\nYou took this card from the pond: \n{card["rank"]} of {card["suit"]}")
     else:
-        print("\nThe computer took a card from the pond.")
+        print("\nYour opponent took a card from the pond.")
     return card
 
 
@@ -128,7 +129,7 @@ def compChoice(compHand):
     for card in compHand:
         ranksInHand.append(card["rank"])
     choice = random.choice(ranksInHand)
-    print(f"\nThe computer says: Give me your {choice}'s.")
+    print(f"\nYour opponent says: Give me your {choice}'s.")
     return choice
 
 def checkForBooks(userTurn, playerHand):
@@ -161,12 +162,12 @@ def checkForBooks(userTurn, playerHand):
         firstPart = "You have"
         secondPart = "You score"
     else:
-        firstPart = "The computer has"
-        secondPart = "It scores"
+        firstPart = "Your opponent has"
+        secondPart = "They score"
     if score == 1:
-        print(f"\n{firstPart} a matching set. {secondPart} a point!")
+        print(f"\n{firstPart} a matching set. {secondPart} a point! 🎉")
     elif score > 1:
-        print(f"\n{firstPart} {score} matching sets. {secondPart} {score} points!")
+        print(f"\n{firstPart} {score} matching sets. {secondPart} {score} points! 🎉")
     return score
 
 def checkForEndgame(userScore, compScore, userHand, compHand, pond):
@@ -185,7 +186,7 @@ def checkForEndgame(userScore, compScore, userHand, compHand, pond):
     elif not userHand:
         print("\nYou are out of cards!")
     elif not compHand:
-        print("\nThe computer is out of cards!")
+        print("\nYour opponent is out of cards!")
     elif not pond:
         print("\nThere are no cards left in the pond!")
     else:
@@ -202,11 +203,11 @@ def displayGameResults(userScore, compScore):
     :return: None
     """
     print(f"\nYour score: {userScore}")
-    print(f"The computer's score: {compScore}")
+    print(f"Opponent's score: {compScore}")
     if userScore > compScore:
-        print("You win!")
+        print("\n-------------------------------------- You win! 🥳 -------------------------------------\n")
     elif compScore > userScore:
-        print("The computer wins.")
+        print("\n-------------------------------- Your opponent wins. 😭 --------------------------------\n")
     else:
         print("It's a tie!")
 
