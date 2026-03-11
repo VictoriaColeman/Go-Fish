@@ -10,10 +10,7 @@ def printInstructions(instructions):
     response = input("\nAre you ready to play Go Fish? (y/n) ").lower()
     while response not in ["y", "n"]:
         response = input("Invalid response. Please type 'y' to play or 'n' to exit: ").lower()
-    if response == "y":
-        return True
-    else:
-        return False
+    return response == "y"
 
 
 def startOfTurn(userTurn, userScore, compScore):
@@ -144,7 +141,6 @@ def checkForEndgame(userScore, compScore, userHand, compHand, pond):
     :param pond: list of cards representing the pond
     :return: True if any endgame conditions are met. False if not.
     """
-    endgame = True
     if userScore + compScore == 13:
         print("\nAll 13 sets of 4 have been collected!")
     elif not userHand:
@@ -154,8 +150,9 @@ def checkForEndgame(userScore, compScore, userHand, compHand, pond):
     elif not pond:
         print("\nThere are no cards left in the pond!")
     else:
-        endgame = False
-    return endgame
+        return False
+    print("Game over. Let's see who won.")
+    return True
 
 
 def displayGameResults(userScore, compScore):
@@ -165,15 +162,21 @@ def displayGameResults(userScore, compScore):
     :param compScore: integer representing the computer's score
     :return: None
     """
-    print("Displaying computer score")
-    print("Displaying player score")
-    print("Printing a message about who won.")
+    print(f"\nYour score: {userScore}")
+    print(f"The computer's score: {compScore}")
+    if userScore > compScore:
+        print("You win!")
+    elif compScore > userScore:
+        print("The computer wins.")
+    else:
+        print("It's a tie!")
 
 def continuePlaying():
     """
     Asks the user if they want to play another round of Go Fish
     :return: True if user wants to play another round. False to stop playing.
     """
-    print("Asking if user wants to play another round.")
-    print("The user says yes")
-    return True
+    answer = input("\nDo you want to play another round of Go Fish? (y/n) ").lower()
+    while answer not in ['y', 'n']:
+        answer = input("Invalid response. Please type 'y' to play another round, 'n' to exit. ").lower()
+    return answer == 'y'
