@@ -1,8 +1,23 @@
 import random
 
+def dealHand(numCards, cardList):
+    """
+    Draws a hand of cards from a deck and returns them as a list of cards. Cards drawn are removed from the deck.
+    :param numCards: Number of cards to draw
+    :param cardList: A list that contains the cards that can be drawn. Is altered by the function.
+    :return: Returns a list of cards drawn.
+    """
+    hand = []
+    for each in range(numCards):
+        card = random.choice(cardList)
+        cardList.remove(card)
+        hand.append(card)
+    return hand
+
+
 def printInstructions(instructions):
     """
-    Print game instructions, then ask user if they want to play. Validate user response.
+    Prints game instructions, then ask user if they want to play. Validates the user's response.
     :param instructions: string containing Go Fish game instructions
     :return: bool that is True if the user wants to play, False to exit
     """
@@ -15,10 +30,10 @@ def printInstructions(instructions):
 
 def startOfTurn(userTurn, userScore, compScore):
     """
-    At the start of turn, prints whose turn it is and the current score.
+    At the start of a turn, prints whose turn it is and the current score.
     :param userTurn: Bool that is True if it is the user's turn, false if it is computer's turn.
-    :param userScore: Integer representing user's current score
-    :param compScore: Integer representing computer's current score
+    :param userScore: integer representing user's current score
+    :param compScore: integer representing computer's current score
     :return: None
     """
     if userTurn:
@@ -41,10 +56,10 @@ def showHand(userHand):
 
 def validRank(userHand):
     """
-    Ask the user what rank they want to fish for and validate their response.
-    Response must be a valid rank that the user has in their hand.
-    :param userHand: user's hand
-    :return: string representing valid rank the user has chosen.
+    Asks the user what rank they want to fish for and validates their response. Response must be a valid rank that
+    the user has in their hand.
+    :param userHand: list of cards representing the user's hand
+    :return: string representing a valid rank the user has chosen
     """
     ranksInHand = []
     for card in userHand:
@@ -57,13 +72,13 @@ def validRank(userHand):
 
 def fishFromHand(rank, playerHand, userTurn):
     """
-    This will "fish" through a hand of cards for any cards matching the rank given. If matching cards are found,
-    they will be removed from the hand and returned as a list. If there are no matching cards, function will
-    return an empty list. Will print a message about whether any cards were taken from the hand or whether to "Go fish".
-    :param rank: String representing the rank of card to fish for.
-    :param playerHand: A list representing the hand of cards to fish through.
-    :param userTurn: Bool representing whether it is the user's turn.
-    :return: A list of matching cards. Will be an empty list if no matching cards found.
+    Searches a hand of cards for any cards matching the rank given. If matching cards are found, they are removed
+    from the hand and returned as a list. If there are no matching cards, returns an empty list. Prints a message
+    about whether any cards were taken from the hand or whether to "Go fish".
+    :param rank: string representing the rank to ask for
+    :param playerHand: list representing the hand of cards to search
+    :param userTurn: bool representing whether it is the user's turn
+    :return: list of matching cards - will be an empty list if no matching cards found
     """
     cardsTaken = []
     for card in playerHand:
@@ -90,8 +105,7 @@ def fishFromHand(rank, playerHand, userTurn):
 
 def goFish(pond, userTurn):
     """
-    Returns a single random card from the pond.
-    Prints a message for the user to let them know the results.
+    Returns a single random card from the pond. Prints a message for the user to let them know the results.
     :param pond: list of cards to draw from
     :param userTurn: bool representing whether it is the user's turn
     :return: dictionary representing a single card
@@ -107,8 +121,8 @@ def goFish(pond, userTurn):
 def compChoice(compHand):
     """
     Chooses a rank that the computer will fish for. Prints a message to the user.
-    :param compHand: computer's hand of cards
-    :return: string representing the rank to fish for.
+    :param compHand: list of cards representing the computer's hand
+    :return: string representing the rank to fish for
     """
     ranksInHand = []
     for card in compHand:
@@ -119,12 +133,12 @@ def compChoice(compHand):
 
 def checkForBooks(userTurn, playerHand):
     """
-    Will go through the hand of cards given and look for any set of 4 cards with the same rank. If any sets of four,
-    or "books" are found, these cards will be removed from the hand. Print a message if any books are found.
-    Function will return the number of books found.
+    Searches a hand of cards for any matching sets of 4 cards with the same rank. If any sets of four, or "books"
+    are found, these cards are removed from the hand. Prints a message if any books are found. Returns the number
+    of books found.
     :param userTurn: bool representing whether it is the user's turn
     :param playerHand: list of cards to search through for sets of 4
-    :return: an integer representing the number of books found
+    :return: integer representing the number of books found
     """
     ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"]
     sets = []
@@ -157,14 +171,14 @@ def checkForBooks(userTurn, playerHand):
 
 def checkForEndgame(userScore, compScore, userHand, compHand, pond):
     """
-    Will check whether any end game conditions have been met. Returns True if they have, False otherwise.
-    Will print a message about what triggered the end of the game.
+    Checks whether any end game conditions have been met. Returns True if they have, False otherwise. Prints a
+    message about what triggered the end of the game.
     :param userScore: integer representing the user's score
     :param compScore: integer representing the computer's score
     :param userHand: list of cards representing the user's hand
     :param compHand: list of cards representing the computer's hand
     :param pond: list of cards representing the pond
-    :return: True if any endgame conditions are met. False if not.
+    :return: True if any endgame conditions are met, False otherwise
     """
     if userScore + compScore == 13:
         print("\nAll 13 sets of 4 have been collected!")
@@ -182,7 +196,7 @@ def checkForEndgame(userScore, compScore, userHand, compHand, pond):
 
 def displayGameResults(userScore, compScore):
     """
-    Will print the user's and computer's scores and print a message about who won.
+    Prints the user's and computer's scores and print a message about who won.
     :param userScore: integer representing the user's score
     :param compScore: integer representing the computer's score
     :return: None
@@ -198,8 +212,8 @@ def displayGameResults(userScore, compScore):
 
 def continuePlaying():
     """
-    Asks the user if they want to play another round of Go Fish
-    :return: True if user wants to play another round. False to stop playing.
+    Asks the user if they want to play another round of Go Fish.
+    :return: True if user wants to play another round, False to stop playing
     """
     answer = input("\nDo you want to play another round of Go Fish? (y/n) ").lower()
     while answer not in ['y', 'n']:

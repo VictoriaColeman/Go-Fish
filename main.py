@@ -11,7 +11,7 @@
 # ------------------------------------------------------------------------
 
 from actions import *
-from deck import DECK, dealHand
+from deck import DECK
 from instructions import gameInstructions
 
 def main():
