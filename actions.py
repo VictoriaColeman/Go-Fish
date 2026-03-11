@@ -126,9 +126,34 @@ def checkForBooks(userTurn, playerHand):
     :param playerHand: list of cards to search through for sets of 4
     :return: an integer representing the number of books found
     """
-    print("Checking for 'books'.")
-    print("No books found.")
-    return 0
+    ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"]
+    sets = []
+    cardsToRemove = []
+    for rank in ranks:
+        count = 0
+        for card in playerHand:
+            if card["rank"] == rank:
+                count += 1
+        if count == 4:
+            sets.append(rank)
+    score = len(sets)
+    for rank in sets:
+        for card in playerHand:
+            if card["rank"] == rank:
+                cardsToRemove.append(card)
+    for card in cardsToRemove:
+        playerHand.remove(card)
+    if userTurn:
+        firstPart = "You have"
+        secondPart = "You score"
+    else:
+        firstPart = "The computer has"
+        secondPart = "It scores"
+    if score == 1:
+        print(f"\n{firstPart} a matching set. {secondPart} a point!")
+    elif score > 1:
+        print(f"\n{firstPart} {score} matching sets. {secondPart} {score} points!")
+    return score
 
 def checkForEndgame(userScore, compScore, userHand, compHand, pond):
     """

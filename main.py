@@ -44,14 +44,12 @@ def main():
             if userTurn:
                 playerHand = userHand
                 opponentHand = compHand
-                playerScore = userScore
                 showHand(userHand)
                 print(compHand) #HERE FOR TESTING ONLY
                 rank = validRank(userHand)
             else:
                 playerHand = compHand
                 opponentHand = userHand
-                playerScore = compScore
                 rank = compChoice(compHand)
 
             #Take any matching cards from the other player's hand
@@ -66,7 +64,11 @@ def main():
                 playerHand.append(card)
 
             #Search for sets of 4 matching cards and update the score
-            playerScore += checkForBooks(userTurn, playerHand)
+            pointsGained = checkForBooks(userTurn, playerHand)
+            if userTurn:
+                userScore += pointsGained
+            else:
+                compScore += pointsGained
 
             #Check whether any endgame conditions have been met
             gameOver = checkForEndgame(userScore, compScore, userHand, compHand, pond)
