@@ -120,13 +120,13 @@ def compChoice(compHand):
     print(f"\nThe computer says: Give me your {choice}'s.")
     return choice
 
-def checkForBooks(userTurn, cardList):
+def checkForBooks(userTurn, playerHand):
     """
     Will go through the hand of cards given and look for any set of 4 cards with the same rank. If any sets of four,
     or "books" are found, these cards will be removed from the hand. Print a message if any books are found.
     Function will return the number of books found.
     :param userTurn: bool representing whether it is the user's turn
-    :param cardList: list of cards to search through for sets of 4
+    :param playerHand: list of cards to search through for sets of 4
     :return: an integer representing the number of books found
     """
     print("Checking for 'books'.")
@@ -144,9 +144,18 @@ def checkForEndgame(userScore, compScore, userHand, compHand, pond):
     :param pond: list of cards representing the pond
     :return: True if any endgame conditions are met. False if not.
     """
-    print("Checking for endgame conditions.")
-    print("No endgame conditions found.")
-    return False
+    endgame = True
+    if userScore + compScore == 13:
+        print("\nAll 13 sets of 4 have been collected!")
+    elif not userHand:
+        print("\nYou are out of cards!")
+    elif not compHand:
+        print("\nThe computer is out of cards!")
+    elif not pond:
+        print("\nThere are no cards left in the pond!")
+    else:
+        endgame = False
+    return endgame
 
 
 def displayGameResults(userScore, compScore):

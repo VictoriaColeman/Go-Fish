@@ -1,7 +1,7 @@
 import random
 
 #This is how I built the 52-card standard deck so that I did not have to type out each card.
-ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "jack", "queen", "king"]
+ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"]
 suits = ["hearts", "spades", "clubs", "diamonds"]
 def buildDeck():
     deck = ()

@@ -56,6 +56,7 @@ def main():
 
             #Take any matching cards from the other player's hand
             cardsTaken = fishFromHand(rank, opponentHand, userTurn)
+
             #If any cards are taken, add to player's hand. Else, go fish
             if cardsTaken:
                 playerHand += cardsTaken
@@ -63,10 +64,13 @@ def main():
                 card = goFish(pond, userTurn)
                 pond.remove(card)
                 playerHand.append(card)
+
             #Search for sets of 4 matching cards and update the score
             playerScore += checkForBooks(userTurn, playerHand)
+
             #Check whether any endgame conditions have been met
             gameOver = checkForEndgame(userScore, compScore, userHand, compHand, pond)
+
             #Switch active player - will flip the boolean value of the variable
             userTurn = not userTurn
 
