@@ -16,9 +16,9 @@ matching sets at the end of the game wins!
 PLAYER TURN:
 On your turn, choose a rank of card to ask for from your opponent. This must be a rank
 that you have in your hand. If your opponent has any matching cards in their hand, they
-must give them to you. Otherwise, say "Go Fish" and you draw a card from the "pond". 
+must give them to you. Otherwise, they say "Go Fish" and you draw a card from the "pond". 
 During their turn, if a player has a set of 4 matching cards, the cards are removed from 
-the player's hand and the player scores a point. 
+their hand and they score a point. 
 
 ENDGAME:
 The game ends when either player runs out of cards in their hand, the pond is empty, or
