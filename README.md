@@ -24,7 +24,6 @@ Run the program.
 
 ## Project Backlog
 These are the additional tasks I would like to complete if time permits
-- Set a player's turn to continue if they get the card they asked for when they "Go Fish"
 - Choose a random first player
 - If a player's hand is empty, allow them to take a card from the pond
 - Keep track of how many games the player and computer have won if they play additional rounds
