@@ -14,7 +14,7 @@ Run the program.
 ---
 
 ## Videos
-- [Code Demo](https://www.youtube.com/watch?v=...)
+- [Code Demo](https://youtu.be/GZU9EHS_v6o)
 - [Code Walkthrough](https://www.youtube.com/watch?v=...)
 
 ---
@@ -23,7 +23,7 @@ Run the program.
 - [Learn to Play Go Fish](https://bicyclecards.com/how-to-play/go-fish) by Bicycle cards
 
 ## Project Backlog
-These are the additional tasks I would like to complete if time permits
+These are the additional tasks that I did not get to but would like to complete in the future.
 - Choose a random first player
 - If a player's hand is empty, allow them to take a card from the pond
 - Keep track of how many games the player and computer have won if they play additional rounds
