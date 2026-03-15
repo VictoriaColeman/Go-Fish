@@ -15,7 +15,7 @@ Run the program.
 
 ## Videos
 - [Code Demo](https://youtu.be/GZU9EHS_v6o)
-- [Code Walkthrough](https://www.youtube.com/watch?v=...)
+- [Code Walkthrough](https://youtu.be/AcNUg6Iw5ZE)
 
 ---
 
